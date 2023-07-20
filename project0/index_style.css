@@ -30,8 +30,8 @@ a {
 }
 
 .form-container > div {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    text-align: center;
 }
 
 #search-bar {
@@ -40,8 +40,9 @@ a {
     border-color: rgba(0,0,0,.2);
     border-radius: 50px;
     height: 45px;
-    width: 600px;
-    align-self: center;
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 600px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
