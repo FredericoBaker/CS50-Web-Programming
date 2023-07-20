@@ -2,29 +2,29 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Google Search</title>
+        <title>Google Images</title>
         <link rel="icon" href="google-favicon.png">
         <link rel="stylesheet" href="index_style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
         <div class="menu">
-            <a href="images.html">Images</a>
+            <a href="index.html">Search</a>
             <a href="advanced.html">Advanced</a>
         </div>
         <div class="logo">
             <a href="index.html">
                 <img src="google-logo.png" alt="Google Logo" style="max-width: 300px; height: auto;">
             </a>
+            <span id="image-text">Images</span>
         </div>
-        <form action="https://www.google.com/search" class="form-container">
+        <form action="https://www.google.com/images" class="form-container">
             <div id="search-bar">
                 <i class="material-icons" style="color: rgba(0,0,0,.3);">search</i>
                 <input type="text" name="q" id="search-input">
             </div>
             <div id="buttons-container">
-                <input class="submit-button" type="submit" value="Google Search">
-                <input class="submit-button" type="submit" name="btnI" value="I'm feeling lucky">
+                <input class="submit-button" type="submit" value="Search Images">
             </div>
         </form>
     </body>

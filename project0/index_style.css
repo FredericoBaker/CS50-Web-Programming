@@ -19,8 +19,17 @@ a {
 
 .logo {
     display: flex;
+    align-items: baseline;
     justify-content: center;
     margin-top: 100px;
+}
+
+#image-text {
+    font-size: 18px;
+    width: 60px;
+    font-family: Arial, sans-serif;
+    color: #4285f4;
+    margin-left: -80px;
 }
 
 .form-container {
@@ -78,6 +87,7 @@ a {
     border: 1px solid #f8f9fa;
     margin: 5px;
     padding: 0 16px;
+    cursor: pointer;
 }
 
 .submit-button:hover {
