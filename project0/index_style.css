@@ -6,6 +6,8 @@ body {
 .menu {
     display: flex;
     justify-content: end;
+    align-items: center;
+    height: 50px;
 }
 
 a {
