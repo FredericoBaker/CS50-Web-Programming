@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if content %}    
+        {{ title }}
+    {% else %}
+        Error
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if content %}    
+        {{ content|safe }}
+    {% else %}
+        <h1>Error</h1>
+        <span>You are trying to access a page that does not exist yet. You can create the content of this page by clicking "Create new page" in the sidebar.</span>
+    {% endif %}
+{% endblock %}
