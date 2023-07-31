@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block body %}
+    <a href="{% url 'edit' name=title %}">Edit article</a>
     {% if content %}    
         {{ content|safe }}
     {% else %}
