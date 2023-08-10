@@ -9,7 +9,7 @@
     {% if not results %}
         <span>No results for {{ query }}.</span>
     {% else %}
-        {% for result in results%}
+        {% for result in results %}
             <li><a href="/wiki/{{ result }}">{{ result }}</a></li>
         {% endfor %}
     {% endif %}
