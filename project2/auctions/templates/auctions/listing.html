@@ -1,0 +1,103 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% if currentWinner and not listing.open %}
+        <h3 id="listing-won">Congrats! You won this auction!</h3>
+    {% endif %}
+
+    <div class="listing-title">
+        <h2>Listing: {{ listing.title }}</h2>
+        {% if isLoggedIn %}
+            <form action="{% url 'listing' listing.id %}" method="post" id="watchlist-form">
+                {% csrf_token %}
+                {% if inWatchlist %}
+                    <input type="hidden" name="operation" value="remove-watchlist">
+                    <div class="watchlist-button" id="remove-watchlist">
+                        <i class="fa fa-eye-slash"></i>
+                        <input type="submit" value="Unwatch">
+                    </div>
+                {% else %}
+                    <input type="hidden" name="operation" value="add-watchlist">
+                    <div class="watchlist-button" id="add-watchlist">
+                        <i class="fa fa-eye"></i>
+                        <input type="submit" value="Watch">
+                    </div>
+                {% endif %}
+            </form>
+        {% endif %}
+    </div>
+    
+    <div id="listing-image">
+        <img src="{{ listing.image }}" alt="Listing Image">
+    </div>
+
+    <div>
+        <p class="price">${{ listing.currentPrice }}</p>
+        <p class="description">{{ listing.description }}</p>
+    </div>
+
+    {% if isLoggedIn and listing.open %}
+        <div>
+            <form action="{% url 'listing' listing.id %}" method="post">
+                {% csrf_token %}
+                <p id="bids-count">{{ numberOfBids }} bid(s) so far. {% if userHasLastBid %}Your bid is the current bid.{% endif %}</p>
+                <div class="form-group" id="bid-form-div">
+                    <input type="hidden" name="operation" value="bid">
+                    <input class="form-control" type="number" name="bid" placeholder="Bid">
+                    <input class="btn btn-primary" id="submit-bid" type="submit" value="Place bid">
+                </div>
+                <p class="error-message">{{ message }}</p>
+            </form>
+        </div>
+    {% endif %}
+
+    <h3 style="margin-top: 30px;">Details</h3>
+    <ul>
+        <li>Listed by: {{ listing.user.username }}</li>
+        <li>Category: {{ listing.category }}</li>
+        <li>Created on {{ listing.creationDate }}</li>
+    </ul>
+
+    {% if isCreator and listing.open %}
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="operation" value="close-auction">
+            <div class="close-button">
+                <i class="fa fa-times"></i>
+                <input class="btn btn-primary" id="close-auction" type="submit" value="Close auction">
+            </div>
+        </form>
+    {% endif %}
+
+    <h3 style="margin-top: 30px; margin-bottom: 20px;">Comments</h3>
+    {% for comment in comments %}
+        <div class="comment-section">
+            <p id="comment-text">{{ comment.text }}</p>
+            <p id="comment-info">Created by <b>{{ comment.user.username }}</b> on {{ comment.creationDate }}</p>
+        </div>
+    {% empty %}
+        <p>No comments yet</p>
+    {% endfor %}
+
+    {% if isLoggedIn %}
+        <div class="new-comment">
+            <form action="{% url 'listing' listing.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="hidden" name="operation" value="comment">
+                    {% for field in commentForm %}
+                        <div class="form-group">
+                            {{ field.errors}}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div style="text-align: right;">
+                    <input class="btn btn-primary" type="submit" value="Comment">
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}

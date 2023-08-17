@@ -1,7 +1,18 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <h2>Categories</h2>
+
+    <form action="{% url 'category' %}" method="get">
+        <div class="form-group" id="category-form">
+            <select class="form-control" id="select-category" name="category">
+                {% for category in categories %}
+                    <option value="{{ category.id }}" name="category">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <input class="btn btn-primary" type="submit" value="See listings">
+        </div>
+    </form>
 
     {% for listing in listings %}
         <div class="listing" onclick="location.href='{% url 'listing' listing.id %}';" style="cursor: pointer;">
@@ -16,6 +27,6 @@
             </div>
         </div>
     {% empty %}
-        <p>No listing.</p>
+        <p>No listing in this category.</p>
     {% endfor %}
 {% endblock %}

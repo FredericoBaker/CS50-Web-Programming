@@ -1,3 +1,184 @@
 body {
     padding: 10px;
 }
+
+.listing {
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #00000050;
+    padding: 10px;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.listingImage {
+    width: 30%;
+    margin-right: 20px;
+}
+
+.listingImage img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.listingInfo {
+    padding: 5px;
+}
+
+.listingTitle {
+    font-size: 24px;
+}
+
+.listingDate {
+    font-size: 12px;
+}
+
+#category-form {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#select-category {
+    margin-right: 10px;
+}
+
+.listing-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#watchlist-form {
+    margin-left: 20px;
+}
+
+.watchlist-button {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.watchlist-button > input {
+    background-color: #FFFFFF;
+    padding: 5px 10px 5px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.watchlist-button > i {
+    margin-right: -25px;
+    z-index: 999;
+}
+
+#add-watchlist > input {
+    border-color: #3B3B3B50;
+    color: #3B3B3B;
+}
+
+#add-watchlist > i {
+    color: #3B3B3B;
+}
+
+#remove-watchlist > input {
+    border-color: #3B3B3B50;
+    background-color: #3B3B3B;
+    color: #FFFFFF;
+}
+
+#remove-watchlist > i {
+    color: #FFFFFF;
+}
+
+#listing-won {
+    text-align: center;
+    margin: 50px;
+    color: green;
+}
+
+#listing-image {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#listing-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#bids-count {
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+#bid-form-div {
+    display: flex;
+    align-items: center;
+}
+
+#submit-bid {
+    margin-left: 10px;
+}
+
+.comment-section {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #00000030;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#comment-text {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+#comment-info {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.new-comment {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.close-button {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.close-button input {
+    background-color: #d1001f;
+    padding: 5px 10px 5px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.close-button input:hover {
+    background-color: #d1001f;
+}
+.close-button i {
+    margin-right: -22px;
+    z-index: 999;
+    color: #FFFFFF;
+}
