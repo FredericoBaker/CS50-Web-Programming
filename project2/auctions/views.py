@@ -118,7 +118,7 @@ def listing(request, listing_id):
                 return HttpResponseRedirect(reverse("listing", args=(listing_id,)))
 
         elif request.POST["operation"] == "bid":
-            if listing.currentBid is not None and int(request.POST["bid"]) == listing.currentPrice or listing.currentBid is None and int(request.POST["bid"]) < listing.currentPrice:
+            if listing.currentBid is not None and int(request.POST["bid"]) <= listing.currentPrice or listing.currentBid is None and int(request.POST["bid"]) < listing.currentPrice:
                 return render(request, "auctions/listing.html", {
                     "listing": listing,
                     "isCreator": isCreator,
