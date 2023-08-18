@@ -1,0 +1,37 @@
+textarea {
+    min-height: 400px;
+}
+
+.email-div {
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3B3B3B50;
+    padding: 5px 10px;
+    min-height: 35px;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+
+.read {
+    background-color: #3b3b3b30;
+}
+
+.unread {
+    background-color: white;
+}
+
+.email-subject {
+    margin-left: 10px;
+}
+
+.email-timestamp{
+    margin-left: auto;
+    color: #3B3B3B90;
+    font-size: 12px;
+}
+
+#error-message {
+    color: red;
+}
