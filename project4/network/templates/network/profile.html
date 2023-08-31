@@ -2,25 +2,23 @@
 {% load static %}
 
 {% block body %}
-    <h1 style="margin-left:10px;">All Posts</h1>
-
-    {% if user.is_authenticated %}
-    {{ request.user.username|json_script:"username" }}
-    <div class="container-template">
-        <h4>New Post</h4>
-        <form id="new-post-form"> 
-            {% csrf_token %}
-            <div class="form-group">
-                <textarea class="form-control" id="content" name="post-content"></textarea>
-            </div>
-            <div class="form-group submit-group">
-                <input class="btn btn-primary" id="new-post-btn" type="submit" value="Post">
-                <p id="error"></p>
-                <p id="success"></p>
-            </div>
-        </form>
+    {% if exists %}
+    <div id="user-info">
+        <h3>{{ user.username }}</h3>
+        {% if request.user.username != user.username %}
+        <button id="follow-button" data-username="{{ user.username }}" onclick="follow_unfollow(this);">
+            {% if is_following %}
+            Unfollow
+            {% else %}
+            Follow
+            {% endif %}
+        </button>
+        {% endif %}
     </div>
-    {% endif %}
+    <div id="user-following-data">
+        <span id="user-followers">{{ followers }}</span> followers
+        <span id="user-following">{{ following }}</span> following
+    </div>
 
     <div id="posts">
 
@@ -44,7 +42,7 @@
             <p id="content-post-{{ post.id }}">{{ post.content }}</p>
             <p id="post-timestamp">{{ post.timestamp }}</p>
             <div id="post-likes">
-                <i class="fa {% if user in post.liked_by.all %}fa-heart{% else %}fa-heart-o{% endif %} like"></i>
+                <i class="fa {% if request.user in post.liked_by.all %}fa-heart{% else %}fa-heart-o{% endif %} like"></i>
                 <span id="likes-number">{{ post.count_likes }}</span>
             </div>
         </div>
@@ -74,8 +72,11 @@
 
     </div>
 
+    {% else %}
+    <h3>This user does not exist.</h3>
+    {% endif %}
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'network/index.js' %}"></script>
+<script src="{% static 'network/profile.js' %}"></script>
 {% endblock %}

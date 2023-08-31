@@ -1,0 +1,65 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<h1 style="margin-left:10px;">Following</h1>
+
+
+<div id="posts">
+
+    {% for post in page_obj %}
+    <div class="container-template" id="post-div">
+        <input type="hidden" id="post-id" value="{{ post.id }}"/>
+        <div id="post-header">
+            <a id="post-username" href="{% url 'profile' post.user.username %}">{{ post.user.username }}</a>
+            {% if user == post.user %}
+            <button id="post-edit" onclick="edit_post('{{ post.id }}');">Edit</button>
+            {% endif %}
+        </div>
+        <form class="edit-post-form" id="edit-post-{{ post.id }}">
+            <div class="form-group">
+                <textarea class="form-control" id="content-{{ post.id }}" name="post-content">{{ post.content }}</textarea>
+            </div>
+            <div class="form-group submit-group">
+                <input class="btn btn-primary" id="edit-post-btn" type="submit" value="Save">
+            </div>
+        </form>
+        <p id="content-post-{{ post.id }}">{{ post.content }}</p>
+        <p id="post-timestamp">{{ post.timestamp }}</p>
+        <div id="post-likes">
+            <i class="fa {% if request.user in post.liked_by.all %}fa-heart{% else %}fa-heart-o{% endif %} like"></i>
+            <span id="likes-number">{{ post.count_likes }}</span>
+        </div>
+    </div>
+
+    {% empty %}
+        <h3>There is no post to show.</h3>
+
+    {% endfor %}
+    
+    {% if page_obj %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center" style="margin-top: 20px; margin-bottom: 50px; align-items: center;">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            <span class="current" style="margin-left: 10px; margin-right: 10px;">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <li class="page-item" id="next"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'network/following.js' %}"></script>
+{% endblock %}
